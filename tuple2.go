@@ -34,52 +34,52 @@ func New2FromSlice[T any](slice []T) *Tuple2[T, T] {
 }
 
 // ------------------------------------------------ Use ---------------------------------------------------------------------
-
-// Len 返回元素的长度，固定为 2
-func (x *Tuple2[V1, V2]) Len() int {
-	return 2
-}
-
-func (x *Tuple2[V1, V2]) Equals(target *Tuple2[V1, V2]) bool {
-
-	// avoid panic, allow nil tuple compare
-	if x == nil || target == nil {
-		return x == target
-	}
-
-	return SliceEquals(x.Slice(), target.Slice())
-}
-
-// Contains 元组是否包含给定的值
-func (x *Tuple2[V1, V2]) Contains(v any) bool {
-	return SliceContains(x.Slice(), v)
-}
-
-// Remove 如果当前元组与目标元组的对应字段相等的话，则移除
-func (x *Tuple2[V1, V2]) Remove(target Tuple2[V1, V2]) {
-
-	if Equals(x.V1, target.V1) {
-		x.V1 = nil
-	}
-
-	if Equals(x.V2, target.V2) {
-		x.V2 = nil
-	}
-
-}
-
-// Merge 如果当前字段是空的，则使用给定的元组的对应下标来覆盖
-func (x *Tuple2[V1, V2]) Merge(target Tuple2[V1, V2]) {
-
-	if x.V1 == nil {
-		x.V1 = target.V1
-	}
-
-	if x.V2 == nil {
-		x.V2 = target.V2
-	}
-
-}
+//
+//// Len 返回元素的长度，固定为 2
+//func (x *Tuple2[V1, V2]) Len() int {
+//	return 2
+//}
+//
+//func (x *Tuple2[V1, V2]) Equals(target *Tuple2[V1, V2]) bool {
+//
+//	// avoid panic, allow nil tuple compare
+//	if x == nil || target == nil {
+//		return x == target
+//	}
+//
+//	return SliceEquals(x.Slice(), target.Slice())
+//}
+//
+//// Contains 元组是否包含给定的值
+//func (x *Tuple2[V1, V2]) Contains(v any) bool {
+//	return SliceContains(x.Slice(), v)
+//}
+//
+//// Remove 如果当前元组与目标元组的对应字段相等的话，则移除
+//func (x *Tuple2[V1, V2]) Remove(target Tuple2[V1, V2]) {
+//
+//	if Equals(x.V1, target.V1) {
+//		x.V1 = nil
+//	}
+//
+//	if Equals(x.V2, target.V2) {
+//		x.V2 = nil
+//	}
+//
+//}
+//
+//// Merge 如果当前字段是空的，则使用给定的元组的对应下标来覆盖
+//func (x *Tuple2[V1, V2]) Merge(target Tuple2[V1, V2]) {
+//
+//	if x.V1 == nil {
+//		x.V1 = target.V1
+//	}
+//
+//	if x.V2 == nil {
+//		x.V2 = target.V2
+//	}
+//
+//}
 
 //// Max 仅当元组中的元素类型都相同时才可以被调用
 //func (x *Tuple2[V1, V2]) Max() any {
