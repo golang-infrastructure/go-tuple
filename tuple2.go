@@ -2,7 +2,6 @@ package tuple
 
 import (
 	"fmt"
-	"go/types"
 )
 
 type Tuple2[V1, V2 any] struct {
@@ -13,7 +12,6 @@ type Tuple2[V1, V2 any] struct {
 // ------------------------------------------------ In ---------------------------------------------------------------------
 
 func New2[V1, V2 any](v1 V1, v2 V2) *Tuple2[V1, V2] {
-	types.NewTuple()
 	return &Tuple2[V1, V2]{
 		V1: v1,
 		V2: v2,
