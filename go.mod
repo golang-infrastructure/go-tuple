@@ -1,5 +1,3 @@
-module github.com/CC11001100/go-tuple
+module github.com/golang-infrastructure/go-tuple
 
-go 1.19
-
-require github.com/CC11001100/go-reflect-utils v0.0.0-20221019044040-9a1c2b2dee1c // indirect
+go 1.18
