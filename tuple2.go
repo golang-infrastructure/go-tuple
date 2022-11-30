@@ -2,6 +2,7 @@ package tuple
 
 import (
 	"fmt"
+	reflect_utils "github.com/golang-infrastructure/go-reflect-utils"
 )
 
 type Tuple2[V1, V2 any] struct {
@@ -57,11 +58,13 @@ func (x *Tuple2[V1, V2]) Contains(v any) bool {
 func (x *Tuple2[V1, V2]) Remove(target Tuple2[V1, V2]) {
 
 	if Equals(x.V1, target.V1) {
-		x.V1 = nil
+		var zero V1
+		x.V1 = zero
 	}
 
 	if Equals(x.V2, target.V2) {
-		x.V2 = nil
+		var zero V2
+		x.V2 = zero
 	}
 
 }
@@ -69,11 +72,11 @@ func (x *Tuple2[V1, V2]) Remove(target Tuple2[V1, V2]) {
 // Merge 如果当前字段是空的，则使用给定的元组的对应下标来覆盖
 func (x *Tuple2[V1, V2]) Merge(target Tuple2[V1, V2]) {
 
-	if x.V1 == nil {
+	if reflect_utils.IsZero(x.V1) {
 		x.V1 = target.V1
 	}
 
-	if x.V2 == nil {
+	if reflect_utils.IsZero(x.V2) {
 		x.V2 = target.V2
 	}
 
