@@ -19,14 +19,13 @@ func New2[V1, V2 any](v1 V1, v2 V2) *Tuple2[V1, V2] {
 	}
 }
 
-// New2FromSlice 从Slice创建元组，slice元素会从左到右解构赋值给元组
+// New2FromSlice 从Slice创建元组，slice元素会从左到右解构赋值给元组，如果长度超过了的话超过的部分会忽略，如果长度不够不够的部分会保持对应类型的零值
 func New2FromSlice[T any](slice []T) *Tuple2[T, T] {
 	t := &Tuple2[T, T]{}
-	switch len(slice) {
-	case 2:
+	if len(slice) >= 2 {
+		t.V1 = slice[0]
 		t.V2 = slice[1]
-		fallthrough
-	case 1:
+	} else if len(slice) >= 1 {
 		t.V1 = slice[0]
 	}
 	return t
@@ -39,6 +38,7 @@ func (x *Tuple2[V1, V2]) Len() int {
 	return 2
 }
 
+// Equals 判断两个元素是否相等
 func (x *Tuple2[V1, V2]) Equals(target *Tuple2[V1, V2]) bool {
 
 	// avoid panic, allow nil tuple compare
@@ -46,11 +46,13 @@ func (x *Tuple2[V1, V2]) Equals(target *Tuple2[V1, V2]) bool {
 		return x == target
 	}
 
+	// 转换为数组比较
 	return SliceEquals(x.Slice(), target.Slice())
 }
 
 // Contains 元组是否包含给定的值
 func (x *Tuple2[V1, V2]) Contains(v any) bool {
+	// 转换为切片
 	return SliceContains(x.Slice(), v)
 }
 
